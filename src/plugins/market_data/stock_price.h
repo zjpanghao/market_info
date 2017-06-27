@@ -14,23 +14,12 @@ class StockPrice {
  public:
   StockPrice() {
     pthread_mutex_init(&mutex_lock_, NULL);
+    init_ = false;
   }
 
   bool Init(std::list<base::ConnAddr>& addrlist, bool only_fetch_latest);
   
-  bool Init(bool only_fetch_latest) {
-    std::string path = DEFAULT_CONFIG_PATH;
-    bool r = false;
-    config::FileConfig* config = config::FileConfig::GetFileConfig();
-    if (config == NULL) {
-      return false;
-    }
-    r = config->LoadConfig(path);
-    LOG_MSG2("The r is %d", r);
-    base::ConnAddr &addr = config->redis_list_.front();
-    LOG_MSG2("The host %s  port %d", addr.host().c_str(), addr.port());
-    return r && Init(config->redis_list_, only_fetch_latest);
-  }
+  bool Init(bool only_fetch_latest); 
 
   void ScanRedis();
   // fetch one day data, if today is not a trading day, or before the trading time
@@ -49,6 +38,7 @@ class StockPrice {
   int market_time_;
   DataEngine data_[DataEngine::MAX_TYPE];
   pthread_mutex_t mutex_lock_;
+  bool init_;
 };
 
 class MutexLockGuard {

@@ -15,6 +15,25 @@ pthread_mutex_t SingleStockPrice::mutex_ = PTHREAD_MUTEX_INITIALIZER;
 const char* const hkey_prefix_[DataEngine::MAX_TYPE] = { "sh_stock_",
     "sz_stock_" };
 
+bool StockPrice::Init(bool only_fetch_latest) {
+  if (init_ == ture) {
+    LOG_MSG2("%s", "market info already inited ");
+    return true;
+  }
+  std::string path = DEFAULT_CONFIG_PATH;
+  bool r = false;
+  config::FileConfig* config = config::FileConfig::GetFileConfig();
+  if (config == NULL) {
+    return false;
+  }
+  r = config->LoadConfig(path);
+  LOG_MSG2("The r is %d", r);
+  base::ConnAddr &addr = config->redis_list_.front();
+  LOG_MSG2("The host %s  port %d", addr.host().c_str(), addr.port());
+  init_ = true;
+  return r && Init(config->redis_list_, only_fetch_latest);
+}
+
 bool StockPrice::Init(std::list<base::ConnAddr>& addrlist, bool only_fetch_latest) {
   bool ret = true;
   LOG_MSG2("The addrlist size %d", addrlist.size());
