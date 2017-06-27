@@ -1,0 +1,10 @@
+[section1]
+   key1 = 1111
+   key2 = 2222
+   key3 = helloworld
+
+
+ [section2]
+   key1 = 333
+   key2 = 444
+   key3 = hahahdsf
