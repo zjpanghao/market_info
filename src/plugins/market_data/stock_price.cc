@@ -16,7 +16,7 @@ const char* const hkey_prefix_[DataEngine::MAX_TYPE] = { "sh_stock_",
     "sz_stock_" };
 
 bool StockPrice::Init(bool only_fetch_latest) {
-  if (init_ == ture) {
+  if (init_ == true) {
     LOG_MSG2("%s", "market info already inited ");
     return true;
   }
