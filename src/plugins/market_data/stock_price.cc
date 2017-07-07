@@ -6,6 +6,7 @@
 #include "realinfo_control.h"
 #include <pthread.h>
 #define ONE_DAY_SECONDS 86400
+#define DEFAULT_CONFIG_PATH  "./market/market.xml"
 
 namespace stock_price {
 
@@ -27,7 +28,7 @@ bool StockPrice::Init(bool only_fetch_latest) {
     return false;
   }
   r = config->LoadConfig(path);
-  LOG_MSG2("The r is %d", r);
+  LOG_MSG2("The r is %d %s", r, DEFAULT_CONFIG_PATH);
   base::ConnAddr &addr = config->redis_list_.front();
   LOG_MSG2("The host %s  port %d", addr.host().c_str(), addr.port());
   init_ = true;

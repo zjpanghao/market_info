@@ -8,7 +8,7 @@
 #include <list>
 
 #include <pthread.h>
-#define DEFAULT_CONFIG_PATH  "/home/runner/depends/lib/market_info/market.xml"
+#define DEFAULT_CONFIG_PATH  "market.xml"
 namespace stock_price {
 class StockPrice {
  public:

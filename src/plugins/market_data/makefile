@@ -13,7 +13,7 @@
 LIB_DIR = ./../../../../mylib
 BASE_CORE=./../../../../basecore
 USER_DIR = ./../../pub
-SO_DIR = ./../../bin/plugins
+BIN_DIR = ./../../bin/
 BASE_DIR = $(LIB_DIR)/base
 STOCKSVC = ./../../plugins
 ARITHMETIC = $(USER_DIR)/arithmetic
@@ -32,7 +32,7 @@ CXXFLAGS += -g  -Wextra -pthread -shared -fPIC
 
 # All tests produced by this Makefile.  Remember to add new tests you
 # created to the list.
-PLUGIN = $(SO_DIR)/../market_info/libmarket_info.so.2.1
+PLUGIN = $(BIN_DIR)/market_info/libmarket_info.so.2.1
                 
 INCLUDE_PATHS = -I/usr/local/libmemcached-1.0.7/include \
 				-I/usr/local/libmemcached/include\

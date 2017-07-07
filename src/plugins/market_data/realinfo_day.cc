@@ -3,7 +3,7 @@
 #include <fstream>
 #include <streambuf>
 #include "logic/logic_comm.h"
-#define STOCK_MARKET_CLOSE_FILE   "/home/runner/depends/lib/market_info/stock_close_date.txt"
+#define STOCK_MARKET_CLOSE_FILE   "./market/stock_close_date.txt"
 namespace stock_price {
 RealInfoDay* RealInfoDay::instance_ = NULL;
 RealInfoDay::RealInfoDay() {
