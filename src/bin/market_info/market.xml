@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <config>
   <cached>
-     <redis host ="192.168.1.111"
+     <redis host ="192.168.1.72"
       port ="7481"
       pass = "ky_161019"
       name = "11"/>
