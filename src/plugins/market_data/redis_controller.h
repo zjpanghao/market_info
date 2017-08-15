@@ -24,6 +24,7 @@ class RedisController  {
       if (redis_engine_) {
         if (!redis_engine_->CheckConnect()) {
           LOG_MSG2("%s", "redis lost connection");
+          redis_engine_->Release();
           if(!redis_engine_->Connections(addrlist_)) {
             LOG_MSG2("%s", "redis CONNECT error");
             return NULL;   
