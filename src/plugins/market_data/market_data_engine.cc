@@ -162,7 +162,6 @@ bool DataEngine::FetchDayData(const std::string &trade_date,
   StringArray all_times;
   all_times.reserve(2000);
   std::string hkey = hkey_prefix_ + trade_date_;
-  LOG_MSG2("Check for date %s", trade_date.c_str());
   if (!redis_->GetAllHashFields(hkey, all_times)) {
     LOG_MSG2("get market time error: %s", hkey.c_str());
     return false;
@@ -194,7 +193,6 @@ bool DataEngine::FetchDayData(const std::string &trade_date,
 
 bool DataEngine::Update(std::string date,
                         std::map<std::string, CodeInfoArray> *day_map) {
-  LOG_MSG2("Update %s", date.c_str());
   StringArray all_times;
   if (trade_date_ != date) {
     trade_date_ = date;
@@ -206,7 +204,6 @@ bool DataEngine::Update(std::string date,
     LOG_MSG2("get market time error: %s", hkey.c_str());
     return false;
   }
-  LOG_MSG2("The redis size %d", all_times.size());
   sort(all_times.begin(), all_times.end());
   StringArray new_times;
   StringArray day_keys;
@@ -221,7 +218,6 @@ bool DataEngine::Update(std::string date,
     if (!RealInfoUtil::IsWorkTime(new_times[i])) {
       continue;
     }
-    LOG_MSG2("Now fetch %s", new_times[i].c_str());
     if (!FetchRawData(trade_date_, new_times[i], data) || data.empty()) {
       continue;
     }
