@@ -86,7 +86,6 @@ void StockPrice::ScanRedis() {
     return;
   }
   
-  LOG_MSG2("%s", "scanredis");
   pthread_mutex_lock(&mutex_lock_);
   std::map<std::string, DataEngine::CodeInfoArray> day_map;
   for (size_t i = 0; i < DataEngine::MAX_TYPE; ++i) {

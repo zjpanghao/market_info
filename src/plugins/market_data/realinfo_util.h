@@ -74,7 +74,6 @@ class RealInfoUtil {
     }
     struct tm stamp;
     GetStamp(date, &stamp);
-    LOG_MSG2("The tm_wday is %d", stamp.tm_wday);
     return stamp.tm_wday < 6 && stamp.tm_wday >= 1;
 
   }

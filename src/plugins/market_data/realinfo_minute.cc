@@ -33,7 +33,7 @@ bool RealInfoStockMinute::AddStockRecord(const std::string &date,
   info.timestamp = ts;
   latest_mp_[stock_code] = info;
   if (stock_code == "000002") {
-    LOG_MSG2("ADD0 STOCK %d  high %.2f price %.2f", ts, info.high, info.price);
+    LOG_DEBUG2("ADD0 STOCK %d  high %.2f price %.2f", ts, info.high, info.price);
   }
   if (!RealInfoUtil::IsKlineData(stamp)) {
     return true;
